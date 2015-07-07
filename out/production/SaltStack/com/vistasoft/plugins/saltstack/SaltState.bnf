@@ -1,0 +1,20 @@
+{
+    parserClass="com.vistasoft.plugins.saltstack.parser.SaltStateParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="SaltState"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.vistasoft.plugins.saltstack.psi"
+    psiImplPackage="com.vistasoft.plugins.saltstack.psi.impl"
+
+    elementTypeHolderClass="com.vistasoft.plugins.saltstack.psi.SaltStateTypes"
+    elementTypeClass="com.vistasoft.plugins.saltstack.psi.SaltStateElementType"
+    tokenTypeClass="com.vistasoft.plugins.saltstack.psi.SaltStateTokenType"
+}
+
+saltStateFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
