@@ -13,8 +13,29 @@
     tokenTypeClass="com.vistasoft.plugins.saltstack.psi.SaltStateTokenType"
 }
 
-saltStateFile ::= item_*
+saltStateFile           ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_           ::= (COMMENT|inline_item_|structured_item)
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+# key: identifier
+# - identifier # comment
+# - key2: value # comment
+# - key3:
+#   subKey3.1: value
+#
+
+private inline_item_    ::= (inline_key_item|inline_list_item)
+inline_key_item         ::= KEY (IDENTIFIER|STRING) COMMENT?
+inline_list_item        ::= LIST_NODE (IDENTIFIER|STRING) COMMENT?
+
+# key:
+#   s1: value1
+#   s2: value2
+#   s3: ...
+
+# key:
+#   - value1
+#   - value2
+#   - ...
+structured_item         ::= LIST_NODE? KEY COMMENT? INDENT item_*
+

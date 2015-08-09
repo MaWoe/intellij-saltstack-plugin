@@ -25,6 +25,9 @@
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.vistasoft.plugins.saltstack.SaltStateFileTypeFactory"/>
     <lang.parserDefinition language="SaltState" implementationClass="com.vistasoft.plugins.saltstack.SaltStateParserDefinition"/>
+    <lang.syntaxHighlighterFactory
+            key="SaltState"
+            implementationClass="com.vistasoft.plugins.saltstack.SaltStateSyntaxHighlighterFactory"/>
   </extensions>
 
   <application-components>
